@@ -9,7 +9,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import icon from '../images/cryptocurrency.png';
 
-function Navbar() {
+function Navbar(): JSX.Element {
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -23,7 +23,7 @@ function Navbar() {
           <Link to="/">Home</Link>
         </Menu.Item>
         <Menu.Item icon={<FundViewOutlined />}>
-          <Link to="/cryptocurrency">Cryptocurrency</Link>
+          <Link to="/cryptocurrencies">Cryptocurrencies</Link>
         </Menu.Item>
         <Menu.Item icon={<MoneyCollectOutlined />}>
           <Link to="/exchanges">Exchanges</Link>

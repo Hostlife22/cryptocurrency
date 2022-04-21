@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CryptoDetails() {
+function CryptoDetails(): JSX.Element {
   return <div>CryptoDetails</div>;
 }
 

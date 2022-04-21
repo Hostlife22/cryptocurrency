@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Exchanges() {
+function Exchanges(): JSX.Element {
   return <div>Exchanges</div>;
 }
 

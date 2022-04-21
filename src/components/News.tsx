@@ -1,6 +1,10 @@
 import React from 'react';
 
-function News() {
+type NewsProps = {
+  simplified?: boolean;
+};
+
+function News({ simplified }: NewsProps): JSX.Element {
   return <div>News</div>;
 }
 

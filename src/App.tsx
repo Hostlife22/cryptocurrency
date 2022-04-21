@@ -1,10 +1,9 @@
 import { Layout, Space, Typography } from 'antd';
 import { Link, Route, Routes } from 'react-router-dom';
-// import { Layout, Typography, Space } from "antd";
 import './App.css';
 import { Cryptocurrencies, CryptoDetails, Exchanges, Homepage, Navbar, News } from './components';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="app">
       <div className="navbar">
@@ -16,7 +15,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="exchanges" element={<Exchanges />} />
-              <Route path="cryptocurrency" element={<Cryptocurrencies />} />
+              <Route path="cryptocurrencies" element={<Cryptocurrencies />} />
               <Route path="crypto/:coinId" element={<CryptoDetails />} />
               <Route path="/news" element={<News />} />
             </Routes>
