@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Coinranking } from './cryptoApi.types';
+import { CryptoDetailCoin } from './cryptoApiCoin.types';
 
 export const AUTH_API_REDUCER_KEY = 'cryptoApi';
 
@@ -23,7 +24,10 @@ export const cryptoApi = createApi({
     getCryptos: builder.query<Coinranking, number>({
       query: (count) => createRequest(`/coins?limit=${count}`),
     }),
+    getCryptoDetails: builder.query<CryptoDetailCoin, string | undefined>({
+      query: (coinId) => createRequest(`/coin/${coinId}`),
+    }),
   }),
 });
 
-export const { useGetCryptosQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery } = cryptoApi;
