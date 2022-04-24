@@ -14,22 +14,14 @@ import HTMLReactParser from 'html-react-parser';
 import millify from 'millify';
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetCryptoDetailsQuery } from '../services/cryptoApi';
+import { Time, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi';
+import LineChart from './LineChart';
 
 type CryptoRouteParams = {
   coinId: string;
 };
 
-enum Time {
-  Hours = '3h',
-  Day = '24h',
-  Weak = '7d',
-  Month = '30d',
-  Year = '1y',
-  ThreeMonths = '3m',
-  ThreeYears = '3y',
-  FiveYears = '5y',
-}
+type CryptoTimeType = keyof typeof Time;
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -38,9 +30,10 @@ function CryptoDetails(): JSX.Element {
   const { coinId } = useParams<CryptoRouteParams>();
   const [timePeriod, setTimePeriod] = React.useState<Time>(Time.Weak);
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timePeriod });
   const cryptoDetails = data?.data?.coin;
   const slug = `${cryptoDetails?.name.split(' ')[0]}-${cryptoDetails?.symbol}`.toLowerCase();
-  const time = Object.keys(Time) as Array<keyof typeof Time>;
+  const time = Object.keys(Time) as Array<CryptoTimeType>;
 
   const stats = [
     {
@@ -106,15 +99,22 @@ function CryptoDetails(): JSX.Element {
         </p>
       </Col>
       <Select
-        defaultValue={Time.Weak}
+        defaultValue={Time.Weak as CryptoTimeType & null}
         className="select-timeperiod"
         placeholder="Select Time Period"
-        onChange={(value: Time) => setTimePeriod(value)}>
+        onChange={(value: CryptoTimeType) => setTimePeriod(Time[value])}>
         {time.map((key) => (
-          <Option key={key}>{Time[`${key}`]}</Option>
+          <Option key={key}>{Time[key]}</Option>
         ))}
       </Select>
-      {/* time char */}
+      {cryptoDetails && coinHistory && (
+        <LineChart
+          coinHistory={coinHistory}
+          currentPrice={millify(Number(cryptoDetails?.price))}
+          coinName={cryptoDetails?.name}
+        />
+      )}
+
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -163,7 +163,7 @@ function CryptoDetails(): JSX.Element {
             {cryptoDetails?.name} Links
           </Title>
           {cryptoDetails?.links.map((link) => (
-            <Row className="coin-link" key={link.name}>
+            <Row className="coin-link" key={link.url}>
               <Title level={5} className="link-name">
                 {link.type}
               </Title>
