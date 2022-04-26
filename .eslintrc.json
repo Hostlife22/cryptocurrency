@@ -25,6 +25,7 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn"],
     "no-shadow": "off",
+    "import/no-cycle": "off",
     "quotes": [
       2,
       "single",

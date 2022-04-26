@@ -348,6 +348,10 @@ a:hover {
 .show-more {
   margin-top: 0px !important;
 }
+
+.exchange-row {
+  width: 100%;
+}
 .exchange-image {
   margin: 0px 10px !important;
 }
