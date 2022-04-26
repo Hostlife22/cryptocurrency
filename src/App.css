@@ -295,16 +295,27 @@ a:hover {
 }
 .news-image-container {
   display: flex !important;
-  justify-content: space-between !important;
+  /* justify-content: space-between !important; */
+  flex-direction: column;
+  align-items: center;
 }
 .news-title {
-  width: 70%;
+  width: 100%;
 }
 
-.news-image-container .img {
-  width: 100px;
-  height: 100px;
+.news-content {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
 }
+
+.news-content img {
+  border-radius: 10px;
+  max-width: 100px;
+  object-fit: cover;
+}
+
 .news-card p {
   color: black;
   margin: 10px 0px !important;

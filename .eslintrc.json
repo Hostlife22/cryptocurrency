@@ -26,6 +26,7 @@
     "@typescript-eslint/no-unused-vars": ["warn"],
     "no-shadow": "off",
     "import/no-cycle": "off",
+    "react/jsx-props-no-spreading": "off",
     "quotes": [
       2,
       "single",

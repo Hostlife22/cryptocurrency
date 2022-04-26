@@ -3,6 +3,7 @@ import moment from 'moment';
 import React from 'react';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
+import Loader from './Loader';
 
 type NewsProps = {
   simplified?: boolean;
@@ -22,7 +23,7 @@ function News({ simplified }: NewsProps): JSX.Element {
   const { data } = useGetCryptosQuery(100);
 
   if (!cryptoNews?.value) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -55,19 +56,17 @@ function News({ simplified }: NewsProps): JSX.Element {
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>
-                  {news.name}
+                  {news.name.length > 50 ? `${news.name.substring(0, 50)}...` : news.name}
                 </Title>
-                <img
-                  style={{ maxWidth: '200px', maxHeight: '100px' }}
-                  src={news?.image?.thumbnail?.contentUrl || demoImage}
-                  alt={news.name}
-                />
               </div>
-              <p>
-                {news.description.length > 100
-                  ? `${news.description.substring(0, 100)}...`
-                  : news.description}
-              </p>
+              <div className="news-content">
+                <img src={news?.image?.thumbnail?.contentUrl || demoImage} alt={news.name} />
+                <p>
+                  {news.description.length > 100
+                    ? `${news.description.substring(0, 100)}...`
+                    : news.description}
+                </p>
+              </div>
               <div className="provider-container">
                 <div>
                   <Avatar

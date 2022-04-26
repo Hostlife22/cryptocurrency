@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Coin } from '../services/cryptoApi.types';
+import Loader from './Loader';
 
 type CryptocurrenciesProps = {
   simplified?: boolean;
@@ -24,7 +25,7 @@ function Cryptocurrencies({ simplified }: CryptocurrenciesProps): JSX.Element {
   }, [cryptoList, searchTerm]);
 
   if (isFetching) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

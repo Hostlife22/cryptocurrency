@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Avatar, Col, Collapse, Row, Typography } from 'antd';
 import millify from 'millify';
 import React, { useEffect } from 'react';
