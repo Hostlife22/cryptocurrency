@@ -19,23 +19,19 @@ type CoinHistoryType = {
   timePeriod: Time;
 };
 
-export const AUTH_API_REDUCER_KEY = 'cryptoApi';
-
 const cryptoApiHeaders = {
-  'Content-Type': 'application/json',
-  'x-access-token': 'coinrankingfc4dc833da76198b168743ce9a509c139566e7f908022973',
-  'Access-Control-Allow-Origin': '*',
+  'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
+  'X-RapidAPI-Key': '9d8982b9d6msh66911b2988be85ap19edbajsnce665143e14c',
 };
 
-const baseUrl = 'https://api.coinranking.com/v2/';
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+const baseUrl = 'https://coinranking1.p.rapidapi.com/';
 
 const createRequest = (url: string) => ({ url, headers: cryptoApiHeaders });
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: proxyUrl + baseUrl,
+    baseUrl,
   }),
   endpoints: (builder) => ({
     getCryptos: builder.query<Coinranking, number>({
