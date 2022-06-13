@@ -3,6 +3,10 @@
 
 ### [Site link](https://eclectic-buttercream-17464e.netlify.app/)
 
+<kbd>
+  <img align="right" alt="img" src="m5Xhvbb.jpeg"  />
+</kbd>
+
 ### 🛠 The tech stack is:
 
 - [React](https://reactjs.org/)
